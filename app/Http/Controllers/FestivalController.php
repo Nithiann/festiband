@@ -10,6 +10,32 @@ use Illuminate\Support\Facades\Validator;
 
 class FestivalController extends Controller
 {
+    // function for creation from WEB
+    public function create(Request $request) {
+        $validator = $this->verify($request);
+
+        if ($validator) {
+            // handle file upload
+            $logopath = $request->file('logo') ? $request->file('logo')->store('public/logos') : null;
+            $coverpath = $request->file('cover') ? $request->file('cover')->store('public/covers') : null;
+
+            $festival = Festival::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'logo' => $logopath,
+                'cover' => $coverpath,
+                'start' => $request->start,
+                'end' => $request->end,
+                'location' => $request->location,
+                'ticketPrice' => $request->ticketPrice,
+            ]);
+
+            return redirect()->route('add-festival')->with('success', 'Festival created successfully!');
+        }
+    }
+
+
+    // function for creation from API
     public function store(Request $request) {
         try {
             $validator = $this->verify($request);
