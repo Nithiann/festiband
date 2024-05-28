@@ -36,4 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/add-festival', [FestivalController::class, 'create'])->name('festival.store');
 });
 
+Route::get('/festivals', [FestivalController::class, 'index'])->name('festivals');
+
+
 require __DIR__.'/auth.php';

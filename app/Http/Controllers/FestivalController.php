@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class FestivalController extends Controller
 {
+    public function index() {
+        $festivals = Festival::all();
+        return view('festival.show', compact('festivals'));
+    }
+
     // function for creation from WEB
     public function create(Request $request) {
         $validator = $this->verify($request);
