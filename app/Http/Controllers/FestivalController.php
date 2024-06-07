@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use App\Models\Festival;
+use App\Models\LineUp;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,17 @@ class FestivalController extends Controller
     public function index() {
         $festivals = Festival::all();
         return view('festival.show', compact('festivals'));
+    }
+
+    public function details($id) {
+        $data = Festival::find($id);
+        $lineup = LineUp::where('festival_id', $id)->get();
+        $artists = [];
+        foreach ($lineup as $artist) {
+            $artists[] = Artist::find($artist->artist_id);
+        }
+
+        return view('festival.id', compact('data', 'artists'));
     }
 
     // function for creation from WEB

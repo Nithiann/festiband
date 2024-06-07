@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
         return view('festival.create');
     })->name('add-festival');
     Route::post('/add-festival', [FestivalController::class, 'create'])->name('festival.store');
+    Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festivals.details');
 });
 
 Route::get('/festivals', [FestivalController::class, 'index'])->name('festivals');
