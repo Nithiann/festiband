@@ -40,16 +40,17 @@ Route::get('/artist/{id}', [ArtistController::class, 'details'])->name('artists.
 Route::middleware('checkRole:admin')->group(function () {
     Route::get('/admin/festival', [AdminController::class, 'FestivalIndex'])->name('festival-admin-list');
 
-    Route::get('/admin/festivals/create', function () {
+    Route::get('/admin/festival/create', function () {
         return view('festival.admin.create');
     })->name('admin.festivals.create');
-    Route::post('/festivals/create', [FestivalController::class, 'create'])->name('festival.store');
-
-    Route::get('/admin/artists/{id}/edit', [ArtistController::class, 'edit'])->name('admin.artists.edit');
-    Route::delete('/admin/artists/{id}', [ArtistController::class, 'destroy'])->name('admin.artists.destroy');
-    Route::get('/admin/festivals/{id}/edit', [FestivalController::class, 'edit'])->name('admin.festivals.edit');
-    Route::delete('/admin/festivals/{id}', [FestivalController::class, 'destroy'])->name('admin.festivals.destroy');
-    Route::get('/admin/artists', [AdminController::class, 'ArtistIndex'])->name('artist-admin-list');
+    Route::post('/festival/create', [FestivalController::class, 'create'])->name('festival.store');
+    Route::get('/admin/festival/{festival}/lineup', [FestivalController::class, 'lineupPage'])->name('admin.festivals.lineup');
+    Route::post('/admin/festival/{festival}/lineup', [FestivalController::class, 'submitLineup'])->name('admin.festivals.lineup');
+    Route::get('/admin/artist/{id}/edit', [ArtistController::class, 'edit'])->name('admin.artists.edit');
+    Route::delete('/admin/artist/{id}', [ArtistController::class, 'destroy'])->name('admin.artists.destroy');
+    Route::get('/admin/festival/{id}/edit', [FestivalController::class, 'edit'])->name('admin.festivals.edit');
+    Route::delete('/admin/festival/{id}', [FestivalController::class, 'destroy'])->name('admin.festivals.destroy');
+    Route::get('/admin/artist', [AdminController::class, 'ArtistIndex'])->name('artist-admin-list');
 
     Route::get('/artists/create', function () {
         return view('artist.admin.create');

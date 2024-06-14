@@ -33,6 +33,7 @@
                             </x-slot>
                             <x-slot name="content">
                                 <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('festivals.details', $festival->id) }}">Goto</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('admin.festivals.lineup', $festival->id) }}">Change Lineup</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('admin.festivals.edit', $festival->id) }}">Update</x-dropdown-link>
                                 <form action="{{ route('admin.festivals.destroy', $festival->id) }}" method="POST">
                                     @csrf
