@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\FestivalController;
 use App\Http\Controllers\ProfileController;
@@ -33,18 +34,27 @@ Route::middleware('auth')->group(function () {
 Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festivals.details');
 Route::get('/festivals', [FestivalController::class, 'index'])->name('festivals');
 Route::get('/artists', [ArtistController::class, 'index'])->name('artists');
+Route::get('/artist/{id}', [ArtistController::class, 'details'])->name('artists.details');
 
 
 Route::middleware('checkRole:admin')->group(function () {
+    Route::get('/admin/festival', [AdminController::class, 'FestivalIndex'])->name('festival-admin-list');
+
     Route::get('/admin/festivals/create', function () {
-        return view('festival.create');
-    })->name('add-festival');
+        return view('festival.admin.create');
+    })->name('admin.festivals.create');
     Route::post('/festivals/create', [FestivalController::class, 'create'])->name('festival.store');
 
+    Route::get('/admin/artists/{id}/edit', [ArtistController::class, 'edit'])->name('admin.artists.edit');
+    Route::delete('/admin/artists/{id}', [ArtistController::class, 'destroy'])->name('admin.artists.destroy');
+    Route::get('/admin/festivals/{id}/edit', [FestivalController::class, 'edit'])->name('admin.festivals.edit');
+    Route::delete('/admin/festivals/{id}', [FestivalController::class, 'destroy'])->name('admin.festivals.destroy');
+    Route::get('/admin/artists', [AdminController::class, 'ArtistIndex'])->name('artist-admin-list');
+
     Route::get('/artists/create', function () {
-        return view('artist.create');
-    })->name('add-artist');
-    Route::post('/artists/create', [ArtistController::class, 'create'])->name('artist.store');
+        return view('artist.admin.create');
+    })->name('admin.artist.create');
+    Route::post('/artists/create', [ArtistController::class, 'store'])->name('admin.artist.store');
 });
 
 

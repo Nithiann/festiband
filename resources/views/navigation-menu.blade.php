@@ -53,8 +53,11 @@
                     </x-dropdown-link>
 
                     @if(Auth()->user()->role == 'admin')
-                    <x-dropdown-link href="{{ route('add-festival') }}">
-                        {{ __('Add Festival') }}
+                    <x-dropdown-link href="{{ route('artist-admin-list') }}">
+                        {{ __('Artist Management') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link href="{{ route('festival-admin-list') }}">
+                        {{ __('Festival Management') }}
                     </x-dropdown-link>
                     @endif
 

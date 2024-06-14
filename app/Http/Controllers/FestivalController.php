@@ -14,7 +14,6 @@ class FestivalController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        dd($user);
         $festivals = Festival::all();
         return view('festival.show', compact('festivals'));
     }
@@ -30,14 +29,20 @@ class FestivalController extends Controller
         return view('festival.id', compact('festival', 'artists'));
     }
 
+    public function edit($id)
+    {
+        $festival = Festival::findOrFail($id);
+        return view('admin.festivals.edit', compact('festival'));
+    }
+
     // function for creation from WEB
     public function create(Request $request) {
         $validator = $this->verify($request);
 
         if ($validator) {
             // handle file upload
-            $logopath = $request->file('logo') ? $request->file('logo')->store('public/storage/logos') : null;
-            $coverpath = $request->file('cover') ? $request->file('cover')->store('public/storage/covers') : null;
+            $logopath = $request->file('logo') ? $request->file('logo')->store('logos', 'public') : null;
+            $coverpath = $request->file('cover') ? $request->file('cover')->store('covers', 'public') : null;
 
             $festival = Festival::create([
                 'name' => $request->name,
@@ -50,7 +55,7 @@ class FestivalController extends Controller
                 'ticketPrice' => $request->ticketPrice,
             ]);
 
-            return redirect()->route('add-festival')->with('success', 'Festival created successfully!');
+            return redirect()->route('admin.festival.create')->with('success', 'Festival created successfully!');
         }
     }
 

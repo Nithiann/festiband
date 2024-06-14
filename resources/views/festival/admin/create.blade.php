@@ -7,7 +7,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form method="POST" action="{{ route('add-festival') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.festivals.create') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Festival Name</label>

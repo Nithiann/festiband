@@ -15,9 +15,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- Styles -->
         @livewireStyles
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -35,7 +37,7 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="">
                 {{ $slot }}
             </main>
         </div>
