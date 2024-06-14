@@ -4,15 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use App\Models\Festival;
+use App\Models\LineUp;
 
 class ArtistController extends Controller
 {
+    public function index() {
+        $artists = Artist::all();
+        return view('festival.list', compact('artists'));
+    }
+
+    public function details($id) {
+        $artist = Artist::find($id);
+        $lineup = LineUp::where('artist_id', $id)->get();
+        $festivals = [];
+        foreach ($lineup as $festival) {
+            $festivals[] = Festival::find($festival->festival_id);
+        }
+
+        return view('festival.id', compact('artist', 'festivals'));
+    }
+
     public function store(Request $request) {
         // validation
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'required',
+            'name' => 'required|min:3|max:50',
+            'description' => 'required|min:3|max:255',
+            'image' => 'image',
         ]);
 
         $artist = Artist::create([

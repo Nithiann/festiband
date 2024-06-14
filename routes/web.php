@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\FestivalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,15 +30,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/festivals/create', function () {
+Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festivals.details');
+Route::get('/festivals', [FestivalController::class, 'index'])->name('festivals');
+Route::get('/artists', [ArtistController::class, 'index'])->name('artists');
+
+
+Route::middleware('checkRole:admin')->group(function () {
+    Route::get('/admin/festivals/create', function () {
         return view('festival.create');
     })->name('add-festival');
     Route::post('/festivals/create', [FestivalController::class, 'create'])->name('festival.store');
-    Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festivals.details');
+
+    Route::get('/artists/create', function () {
+        return view('artist.create');
+    })->name('add-artist');
+    Route::post('/artists/create', [ArtistController::class, 'create'])->name('artist.store');
 });
 
-Route::get('/festivals', [FestivalController::class, 'index'])->name('festivals');
+
 
 
 require __DIR__.'/auth.php';

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\enums\Roles;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Log;
@@ -20,9 +21,11 @@ class CheckRole
     {
         try {
             // Get the authenticated user
-            $user = JWTAuth::parseToken()->authenticate();
+            $user = Auth::user();
+
             // Check if the 'role' claim exists and has the specified role
-            if ($user && $user->role == Roles::from($role)) {
+
+            if ($user && $user->role == $role) {
                 return $next($request);
             }
 

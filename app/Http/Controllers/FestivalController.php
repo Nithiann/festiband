@@ -7,11 +7,14 @@ use App\Models\Festival;
 use App\Models\LineUp;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class FestivalController extends Controller
 {
     public function index() {
+        $user = Auth::user();
+        dd($user);
         $festivals = Festival::all();
         return view('festival.show', compact('festivals'));
     }
@@ -78,10 +81,10 @@ class FestivalController extends Controller
 
     public function verify(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
-            'logo' => 'required',
-            'cover' => 'required',
+            'name' => 'required|min:3|max:50',
+            'description' => 'required|min:3|max:255',
+            'logo' => 'image',
+            'cover' => 'image',
             'start' => 'required',
             'end' => 'required',
             'location' => 'required',
