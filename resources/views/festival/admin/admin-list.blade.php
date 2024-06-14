@@ -17,7 +17,7 @@
                 @foreach($festivals as $festival)
                 <tr>
                     <td>{{ $festival->name }}</td>
-                    <td>{{ $festival->date }}</td>
+                    <td>{{ $festival->start }}</td>
                     <td>{{ $festival->location }}</td>
                     <td>
                         <x-dropdown>
