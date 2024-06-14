@@ -17,14 +17,14 @@ class FestivalController extends Controller
     }
 
     public function details($id) {
-        $data = Festival::find($id);
+        $festival = Festival::find($id);
         $lineup = LineUp::where('festival_id', $id)->get();
         $artists = [];
         foreach ($lineup as $artist) {
             $artists[] = Artist::find($artist->artist_id);
         }
 
-        return view('festival.id', compact('data', 'artists'));
+        return view('festival.id', compact('festival', 'artists'));
     }
 
     // function for creation from WEB
@@ -33,8 +33,8 @@ class FestivalController extends Controller
 
         if ($validator) {
             // handle file upload
-            $logopath = $request->file('logo') ? $request->file('logo')->store('public/logos') : null;
-            $coverpath = $request->file('cover') ? $request->file('cover')->store('public/covers') : null;
+            $logopath = $request->file('logo') ? $request->file('logo')->store('public/storage/logos') : null;
+            $coverpath = $request->file('cover') ? $request->file('cover')->store('public/storage/covers') : null;
 
             $festival = Festival::create([
                 'name' => $request->name,

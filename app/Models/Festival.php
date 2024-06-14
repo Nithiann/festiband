@@ -24,4 +24,12 @@ class Festival extends Model
     public function artists() {
         return $this->belongsToMany(Artist::class, 'lineup');
     }
+
+    public function getLogo() {
+        return url('/storage/'. $this->logo);
+    }
+
+    public function getCover() {
+        return url('/storage/'. $this->cover);
+    }
 }

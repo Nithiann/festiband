@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/festivals/create', function () {
         return view('festival.create');
     })->name('add-festival');
-    Route::post('/add-festival', [FestivalController::class, 'create'])->name('festival.store');
+    Route::post('/festivals/create', [FestivalController::class, 'create'])->name('festival.store');
     Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festivals.details');
 });
 

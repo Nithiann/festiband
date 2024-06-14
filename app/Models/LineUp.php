@@ -12,11 +12,12 @@ class LineUp extends Model {
     protected $fillable = [
         'set_name',
         'start_time',
-        'end_time'
+        'end_time',
+        'artist_id',
+        'festival_id'
     ];
 
     protected $hidden = [
-        'artist_id',
-        'festival_id'
+
     ];
 }

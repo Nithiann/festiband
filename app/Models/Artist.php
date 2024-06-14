@@ -22,4 +22,8 @@ class Artist extends Model {
     public function portfolio() {
         return $this->hasMany(Festival::class, 'portfolio');
     }
+
+    public function getImage() {
+        return url('/storage/'. $this->image);
+    }
 }
