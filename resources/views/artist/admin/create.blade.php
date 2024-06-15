@@ -25,7 +25,8 @@
                 </div>
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700">Picture</label>
-                    <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded mt-1">
+                    <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded mt-1" onchange="previewImage(event, 'profilePreview')">
+                    <img id="profilePreview" src="#" alt="Cover Photo Preview" class="mt-2 hidden w-32 h-32 object-cover">
                     @error('logo')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -34,5 +35,16 @@
             </form>
         </div>
     </div>
+    <script>
+        function previewImage(event, previewId) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById(previewId);
+                output.src = reader.result;
+                output.classList.remove('hidden');
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </x-app-layout>
 
