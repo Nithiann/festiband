@@ -42,7 +42,7 @@ Route::middleware('checkRole:admin')->group(function () {
 
     Route::get('/admin/festival/create', function () {
         return view('festival.admin.create');
-    })->name('admin.festivals.create');
+    })->name('admin.festival.create');
     Route::post('/festival/create', [FestivalController::class, 'create'])->name('festival.store');
     Route::get('/admin/festival/{festival}/lineup', [FestivalController::class, 'lineupPage'])->name('admin.festivals.lineup');
     Route::post('/admin/festival/{festival}/lineup', [FestivalController::class, 'submitLineup'])->name('admin.festivals.lineup');

@@ -154,7 +154,7 @@ class FestivalController extends Controller
     {
         $festival = Festival::find($id);
         $festival->delete();
-        return response()->json(['success' => true], 200);
+        return redirect()->route('festival-admin-list');
     }
 
     public function update(Request $request, $id)

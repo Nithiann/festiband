@@ -35,7 +35,7 @@
                                 <form action="{{ route('admin.artists.destroy', $artist->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <x-dropdown-link type="submit" class="dropdown-item hover:scale-105 transition duration-300">Delete</x-dropdown-link>
+                                    <x-button type="submit" class="dropdown-item hover:scale-105 transition duration-300">Delete</x-button>
                                 </form>
                             </x-slot>
                         </x-dropdown>

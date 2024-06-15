@@ -73,10 +73,7 @@ class ArtistController extends Controller
             'image' => $imagePath,
         ]);
 
-        return response()->json([
-            'success'=> true,
-            'artist' => $artist
-        ]);
+        return redirect()->route('artist-admin-list');
     }
 
     public function getOne($id) {
@@ -92,7 +89,7 @@ class ArtistController extends Controller
     public function destroy($id) {
         $artist = Artist::find($id);
         $artist->delete();
-        return response()->json(['success' => true], 200);
+        return redirect()->route('artist-admin-list');
     }
 
     public function update(Request $request, $id) {

@@ -7,7 +7,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form method="POST" action="{{ route('admin.festivals.create') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('festival.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1">

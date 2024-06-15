@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Festival</h1>
-            <a href="{{ route('admin.festivals.create') }}" class="btn btn-primary">Add Festival</a>
+            <a href="{{ route('admin.festival.create') }}" class="btn btn-primary">Add Festival</a>
         </div>
         <table class="table table-striped">
             <thead>
@@ -38,7 +38,7 @@
                                 <form action="{{ route('admin.festivals.destroy', $festival->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <x-dropdown-link type="submit" class="dropdown-item hover:scale-105 transition duration-300">Delete</x-dropdown-link>
+                                    <x-button type="submit" class="dropdown-item hover:scale-105 transition duration-300 text-black">Delete</x-button>
                                 </form>
                             </x-slot>
                         </x-dropdown>
