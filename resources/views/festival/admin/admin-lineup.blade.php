@@ -8,7 +8,7 @@
                 <ul id="available-artists" class="space-y-2">
                     @foreach($allArtists as $artist)
                         @unless($currentLineup->contains('artist_id', $artist->id))
-                            <li class="flex items-center justify-between cursor-pointer" data-id="{{ $artist->id }}" onclick="addToLineup(this)">
+                            <li class="flex items-center justify-between cursor-pointer hover:scale-105 hover:font-bold transition duration-300" data-id="{{ $artist->id }}" onclick="addToLineup(this)">
                                 {{ $artist->name }}
                             </li>
                         @endunless
