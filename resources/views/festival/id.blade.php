@@ -14,14 +14,12 @@
                 </div>
             </div>
             <div class="mt-8">
-                <strong>Line-up:</strong>
-                <div class="grid grid-cols-3 gap-4 mt-4">
+                <div class="text-center text-lg">
+                    <strong>Line-up:</strong>
+                </div>
+                <div class="grid grid-cols-5 gap-4 mt-4">
                     @foreach ($artists as $artist)
-                        <div class="border-2 border-black h-32 flex items-center justify-center">
-                            <div><strong>Naam:</strong> {{ $artist->name }}</div>
-                            <!-- Dynamic lineup images -->
-                            <img src="{{ $artist->getImage() }}" alt="Line-up Image" class="h-full w-full object-cover">
-                        </div>
+                        <x-lineup-card :artist="$artist" :lineup="$lineup" />
                     @endforeach
                 </div>
             </div>

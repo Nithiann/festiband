@@ -29,7 +29,7 @@ class FestivalController extends Controller
             $artists[] = Artist::find($artist->artist_id);
         }
 
-        return view('festival.id', compact('festival', 'artists'));
+        return view('festival.id', compact('festival', 'artists', 'lineup'));
     }
 
     public function edit($id)
