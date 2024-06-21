@@ -21,10 +21,10 @@ Route::view('/', 'welcome')->name('home');
 Route::view('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
 // accessable by everyone
-Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festivals.details');
-Route::get('/festivals', [FestivalController::class, 'index'])->name('festivals');
-Route::get('/artists', [ArtistController::class, 'index'])->name('artists');
-Route::get('/artist/{id}', [ArtistController::class, 'details'])->name('artists.details');
+Route::get('/festivals/{id}', [FestivalController::class, 'details'])->name('festival.details');
+Route::get('/festivals', [FestivalController::class, 'index'])->name('festival');
+Route::get('/artists', [ArtistController::class, 'index'])->name('artist');
+Route::get('/artist/{id}', [ArtistController::class, 'details'])->name('artist.details');
 
 // only accessable when logged in
 Route::middleware('auth')->group(function () {
@@ -35,17 +35,17 @@ Route::middleware('auth')->group(function () {
 
 // only accessable by admin
 Route::middleware('checkRole:admin')->group(function () {
-    Route::get('/admin/festival', [AdminController::class, 'FestivalIndex'])->name('festival-admin-list');
+    Route::get('/admin/festival', [AdminController::class, 'FestivalIndex'])->name('admin.festival.list');
 
     Route::view('/admin/festival/create', 'festival.admin.create')->name('admin.festival.create');
     Route::post('/festival/create', [FestivalController::class, 'create'])->name('festival.store');
-    Route::get('/admin/festival/{festival}/lineup', [FestivalController::class, 'lineupPage'])->name('admin.festivals.lineup');
-    Route::post('/admin/festival/{festival}/lineup', [FestivalController::class, 'submitLineup'])->name('admin.festivals.lineup');
-    Route::get('/admin/artist/{id}/edit', [ArtistController::class, 'edit'])->name('admin.artists.edit');
-    Route::delete('/admin/artist/{id}', [ArtistController::class, 'destroy'])->name('admin.artists.destroy');
-    Route::get('/admin/festival/{id}/edit', [FestivalController::class, 'edit'])->name('admin.festivals.edit');
-    Route::delete('/admin/festival/{id}', [FestivalController::class, 'destroy'])->name('admin.festivals.destroy');
-    Route::get('/admin/artist', [AdminController::class, 'ArtistIndex'])->name('artist-admin-list');
+    Route::get('/admin/festival/{festival}/lineup', [FestivalController::class, 'lineupPage'])->name('admin.festival.lineup');
+    Route::post('/admin/festival/{festival}/lineup', [FestivalController::class, 'submitLineup'])->name('admin.festival.lineup');
+    Route::get('/admin/artist/{id}/edit', [ArtistController::class, 'edit'])->name('admin.artist.edit');
+    Route::delete('/admin/artist/{id}', [ArtistController::class, 'destroy'])->name('admin.artist.destroy');
+    Route::get('/admin/festival/{id}/edit', [FestivalController::class, 'edit'])->name('admin.festival.edit');
+    Route::delete('/admin/festival/{id}', [FestivalController::class, 'destroy'])->name('admin.festival.destroy');
+    Route::get('/admin/artist', [AdminController::class, 'ArtistIndex'])->name('admin.artist.list');
 
     Route::get('/artists/create', 'artist.admin.create')->name('admin.artist.create');
     Route::post('/artists/create', [ArtistController::class, 'store'])->name('admin.artist.store');

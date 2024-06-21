@@ -30,9 +30,9 @@
                                 </span>
                             </x-slot>
                             <x-slot name="content">
-                                <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('artists.details', $artist->id) }}">Goto</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('admin.artists.edit', $artist->id) }}">Update</x-dropdown-link>
-                                <form action="{{ route('admin.artists.destroy', $artist->id) }}" method="POST">
+                                <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('artist.details', $artist->id) }}">Goto</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item hover:scale-105 transition duration-300" href="{{ route('admin.artist.edit', $artist->id) }}">Update</x-dropdown-link>
+                                <form action="{{ route('admin.artist.destroy', $artist->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <x-warning-button type="submit" class="dropdown-item hover:scale-105 transition duration-300">Delete</x-warning-button>

@@ -64,7 +64,7 @@ class FestivalController extends Controller
             ]);
         }
 
-        return redirect()->route('festival-admin-list')->with('success', 'Lineup updated successfully.');
+        return redirect()->route('admin.festival.list')->with('success', 'Lineup updated successfully.');
     }
 
     // function for creation from WEB
@@ -154,7 +154,7 @@ class FestivalController extends Controller
     {
         $festival = Festival::find($id);
         $festival->delete();
-        return redirect()->route('festival-admin-list');
+        return redirect()->route('admin.festival.list');
     }
 
     public function update(Request $request, $id)

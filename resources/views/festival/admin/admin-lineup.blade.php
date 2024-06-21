@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <form id="lineup-form" method="POST" action="{{ route('admin.festivals.lineup', $festival) }}">
+        <form id="lineup-form" method="POST" action="{{ route('admin.festival.lineup', $festival) }}">
             @csrf
             <input type="hidden" name="lineup" id="lineup-input">
             <button type="submit" class="btn btn-primary mt-4" onclick="saveLineup()">Save Lineup</button>

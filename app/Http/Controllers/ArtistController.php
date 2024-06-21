@@ -29,7 +29,7 @@ class ArtistController extends Controller
     public function edit($id)
     {
         $artist = Artist::findOrFail($id);
-        return view('admin.artists.edit', compact('artist'));
+        return view('admin.artist.edit', compact('artist'));
     }
 
     public function create(Request $request) {
@@ -73,7 +73,7 @@ class ArtistController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('artist-admin-list');
+        return redirect()->route('admin.artist.list');
     }
 
     public function getOne($id) {
@@ -89,7 +89,7 @@ class ArtistController extends Controller
     public function destroy($id) {
         $artist = Artist::find($id);
         $artist->delete();
-        return redirect()->route('artist-admin-list');
+        return redirect()->route('admin.artist.list');
     }
 
     public function update(Request $request, $id) {
