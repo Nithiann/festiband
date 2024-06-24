@@ -50,9 +50,8 @@
             /* Behind the overlay */
         }
 
-        .video-background.fade-in {
-            opacity: 1;
-            /* Fade in */
+        .fade-in {
+            opacity: 1 !important;
         }
 
         .content {
@@ -65,34 +64,24 @@
             height: 100%;
             color: white;
             text-align: center;
+            opacity: 0;
+            transform: translateY(100vh); /* Start from bottom of the viewport */
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
 
         .logo-container {
             position: absolute;
-            top: 20px;
-            /* Adjust this value as needed */
+            top: 20px; /* Adjust as needed */
             left: 50%;
             transform: translateX(-50%);
-        }
-
-        .btn {
-            background-color: #ff0000;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
         }
 
         .btn-outline {
             position: relative;
             display: inline-block;
             padding: 10px 20px;
-            border: 2px solid #ff0000;
-            /* Purple border */
-            color: #ffffff;
-            /* Purple text */
+            border: 2px solid #8002bb; /* Purple border */
+            color: #ffffff; /* Purple text */
             background-color: transparent;
             border-radius: 5px;
             font-weight: bold;
@@ -108,7 +97,6 @@
             left: 50%;
             width: 300%;
             height: 300%;
-
             transition: width 0.4s ease-in-out, height 0.4s ease-in-out, top 0.4s ease-in-out, left 0.4s ease-in-out;
             transform: translate(-50%, -50%);
             z-index: 0;
@@ -120,10 +108,8 @@
         }
 
         .btn-outline:hover {
-            background-color: #ff0000;
-            /* Purple background */
-            color: white;
-            /* White text */
+            background-color: #8002bb; /* Purple background */
+            color: white; /* White text */
         }
 
         .btn-outline span {
@@ -140,15 +126,15 @@
             Your browser does not support the video tag.
         </video>
     </div>
-    <div class="content">
-        <div class="logo-container">
-            <img src="{{ asset('storage/logo.webp') }}" alt="Logo" class="mb-4 w-24 h-24 object-contain">
-        </div>
-        <h1 class="text-4xl font-bold">Welcome to Festiband<small class="text-xl">©</small></h1>
+    <div class="logo-container">
+        <img src="{{ asset('storage/logo.webp') }}" alt="Logo" class="mb-4 w-24 h-24 object-contain">
+    </div>
+    <div class="content" id="content">
+        <h1 class="text-4xl font-bold">Welcome to FestiBand<small class="text-xl">©</small></h1>
         <p class="mt-4 max-w-md text-lg">Your ultimate social media hub for festival lovers! Share moments, connect with
             fellow festival-goers, and stay updated on the latest events. Keep the festival spirit alive all year round!
         </p>
-        <div class='flex justify-between'>
+        <div class='flex justify-between mt-4'>
             <div class="p-4">
                 <a class="btn-outline" href="{{ route('login') }}"><span>Login</span></a>
             </div>
@@ -157,8 +143,14 @@
             </div>
         </div>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger the animation after the DOM content is fully loaded
+            var content = document.getElementById('content');
+            content.style.opacity = 1;
+            content.style.transform = 'translateY(0)'; // Move to the center
+
             var video = document.getElementById('background-video');
             video.addEventListener('loadeddata', function() {
                 document.getElementById('video-background').classList.add('fade-in');
