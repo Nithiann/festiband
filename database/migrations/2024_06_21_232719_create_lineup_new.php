@@ -13,15 +13,12 @@ return new class extends Migration
     {
         Schema::create('lineup', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('artist_id');
-            $table->unsignedBigInteger('festival_id');
             $table->string('set_name')->nullable(true);
             $table->dateTime('start_time')->nullable(true);
             $table->dateTime('end_time')->nullable(true);
             $table->timestamps();
-
-            $table->foreign('artist_id')->references('id')->on('artists');
-            $table->foreign('festival_id')->references('id')->on('festivals');
+            $table->foreignId('artist_id')->constrained()->onDelete('cascade');
+            $table->foreignId('festival_id')->constrained()->onDelete('cascade');
         });
     }
 

@@ -17,13 +17,10 @@ class ArtistController extends Controller
 
     public function details($id) {
         $artist = Artist::find($id);
-        $lineup = LineUp::where('artist_id', $id)->get();
-        $festivals = [];
-        foreach ($lineup as $festival) {
-            $festivals[] = Festival::find($festival->id);
-        }
+        $festivals = $artist->festival();
 
-        return view('artist.id', compact('artist', 'festivals'));
+
+        return view('artist.id', compact('artist'));
     }
 
     public function edit($id)

@@ -20,4 +20,12 @@ class LineUp extends Model {
     protected $hidden = [
 
     ];
+
+    public function festival() {
+        return $this->belongsTo(Festival::class);
+    }
+
+    public function artist() {
+        return $this->belongsTo(Artist::class);
+    }
 }

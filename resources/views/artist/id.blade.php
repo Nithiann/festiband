@@ -13,7 +13,7 @@
             <div class="mt-8">
                 <strong>Line-up:</strong>
                 <div class="grid grid-cols-3 gap-4 mt-4">
-                    @foreach ($festivals as $festival)
+                    @foreach ($artist->festival as $festival)
                         <div class="border-2 border-black h-32 flex items-center justify-center">
                             <div><strong>Naam:</strong> {{ $festival->name }}</div>
                             <!-- Dynamic lineup images -->

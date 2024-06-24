@@ -21,8 +21,9 @@ class Festival extends Model
         'ticketPrice'
     ];
 
-    public function artists() {
-        return $this->belongsToMany(Artist::class, 'lineup');
+
+    public function artist() {
+        return $this->hasMany(Artist::class, 'lineup');
     }
 
     public function getLogo() {

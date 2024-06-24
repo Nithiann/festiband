@@ -15,8 +15,8 @@ class Artist extends Model {
         'image'
     ];
 
-    public function festivals() {
-        return $this->belongsToMany(Festival::class, 'lineup');
+    public function festival() {
+        return $this->hasMany(Festival::class, 'lineup');
     }
 
     public function portfolio() {
