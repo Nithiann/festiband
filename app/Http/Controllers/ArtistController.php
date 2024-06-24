@@ -16,9 +16,10 @@ class ArtistController extends Controller
     }
 
     public function details($id) {
-        $artist = Artist::find($id);
-        $festivals = $artist->festival();
-
+        $artist = Artist::with('lineups', 'festivals')->find($id);
+        if (!$artist) {
+            abort(404);
+        }
 
         return view('artist.id', compact('artist'));
     }

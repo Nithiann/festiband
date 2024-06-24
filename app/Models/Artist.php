@@ -15,12 +15,14 @@ class Artist extends Model {
         'image'
     ];
 
-    public function festival() {
-        return $this->hasMany(Festival::class, 'lineup');
+    public function lineups()
+    {
+        return $this->hasMany(Lineup::class);
     }
 
-    public function portfolio() {
-        return $this->hasMany(Festival::class, 'portfolio');
+    public function festivals()
+    {
+        return $this->hasManyThrough(Festival::class, Lineup::class, 'artist_id', 'id', 'id', 'festival_id');
     }
 
     public function getImage() {

@@ -144,7 +144,7 @@
         <div class="logo-container">
             <img src="{{ asset('storage/logo.webp') }}" alt="Logo" class="mb-4 w-24 h-24 object-contain">
         </div>
-        <h1 class="text-4xl font-bold">Welcome to Festiband</h1>
+        <h1 class="text-4xl font-bold">Welcome to Festiband<small class="text-xl">©</small></h1>
         <p class="mt-4 max-w-md text-lg">Your ultimate social media hub for festival lovers! Share moments, connect with
             fellow festival-goers, and stay updated on the latest events. Keep the festival spirit alive all year round!
         </p>

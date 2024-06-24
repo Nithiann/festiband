@@ -50,7 +50,7 @@ Route::middleware('checkRole:admin')->group(function () {
     Route::get('/admin/artist/{id}/edit', [ArtistController::class, 'edit'])->name('admin.artist.edit');
     Route::delete('/admin/artist/{id}', [ArtistController::class, 'destroy'])->name('admin.artist.destroy');
     Route::get('/admin/artist', [AdminController::class, 'ArtistIndex'])->name('admin.artist.list');
-    //Route::get('/admin/artist/create', 'artist.admin.create')->name('admin.artist.create');
+    Route::view('/admin/artist/create', 'artist.admin.create')->name('admin.artist.create');
     Route::post('/admin/artist/create', [ArtistController::class, 'store'])->name('admin.artist.store');
 });
 

@@ -22,8 +22,14 @@ class Festival extends Model
     ];
 
 
-    public function artist() {
-        return $this->hasMany(Artist::class, 'lineup');
+    public function artists()
+    {
+        return $this->hasManyThrough(Artist::class, Lineup::class, 'artist_id', 'id', 'id', 'festival_id');
+    }
+
+    public function lineups()
+    {
+        return $this->hasMany(Lineup::class);
     }
 
     public function getLogo() {

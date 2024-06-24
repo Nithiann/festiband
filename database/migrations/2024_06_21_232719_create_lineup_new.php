@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lineup', function (Blueprint $table) {
+        Schema::create('lineups', function (Blueprint $table) {
             $table->id();
             $table->string('set_name')->nullable(true);
             $table->dateTime('start_time')->nullable(true);
